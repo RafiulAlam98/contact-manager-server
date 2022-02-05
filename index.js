@@ -29,6 +29,16 @@ const run = async() =>{
                res.json(result)
           })
 
+          // get single contact information
+          app.get('/allContacts/:id',async(req,res)=>{
+               const query = {name: req.params?.id}
+               console.log(query)
+               const cursor = await contactCollection.find(query)
+               const result = await cursor.toArray()
+               console.log(result)
+               res.json(result)
+          })
+
           // add new contact
           app.post('/newContact',async(req,res) => {
                console.log(req.body)
